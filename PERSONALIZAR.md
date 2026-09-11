@@ -66,5 +66,7 @@ personal con permiso `read:user` y guárdalo como secreto `PROFILE_TOKEN`.
 ## Para que aparezca en tu perfil
 
 GitHub solo muestra el README del repositorio que se llama **igual que tu
-usuario** y es público. Renombra este repo a `cajacuenta767-sketch`
-(Settings → General → Repository name) y el perfil se verá al instante.
+usuario** y es público. Este repo ya se llama `cajacuenta767-sketch`, así que
+el perfil se ve en https://github.com/cajacuenta767-sketch. Si algún día lo
+renombras, el diseño dejará de aparecer en el perfil (aunque el repo siga
+funcionando).
