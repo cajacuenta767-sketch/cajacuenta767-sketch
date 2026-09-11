@@ -48,8 +48,14 @@ GREEN = "#3fb950"
 GREEN_SOFT = "#7ee787"
 INK = "#111318"          # contorno de la mascota
 WHITE = "#ffffff"
-PINK = "#f7c9d4"
+PINK = "#f3b8c6"        # interior de las orejas
 BLUSH = "#f4a6b7"
+NOSE = "#e7a2b6"        # nariz rosada
+PATCH = "#343a43"       # manchas negras del merle
+MERLE = "#9aa3ad"       # manchas grises
+EYE_BLUE = "#7cc4ee"    # ojo celeste
+EYE_BROWN = "#6b4a2b"   # ojo marrón
+HARNESS = "#7d8590"     # arnés
 HEAT = ["#232a33", "#0e4429", "#006d32", "#26a641", "#39d353"]
 
 FONT = "'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif"
@@ -115,46 +121,77 @@ def plus(x: float, y: float, r: float, color: str = GREEN, delay: float = 0) -> 
             f'style="animation-delay:{delay:.1f}s"/>')
 
 
-def mascot_head(eyes: str = "code", tilt: float = 0) -> str:
-    """Cabeza de la mascota centrada en (0,0). Alto total ~110 (orejas incluidas)."""
+def mascot_head(eyes: str = "open", tilt: float = 0) -> str:
+    """Cabeza de la perrita centrada en (0,0): merle blanca, ojo celeste y gafas."""
     sw = 3.5
     ears = (
+        # orejas caídas en forma de gota: izquierda blanca, derecha negra
         f'<g stroke="{INK}" stroke-width="{sw}" stroke-linejoin="round">'
-        f'<ellipse cx="-17" cy="-54" rx="10.5" ry="28" fill="{WHITE}" transform="rotate(-9 -17 -54)"/>'
-        f'<ellipse cx="-17" cy="-52" rx="4.5" ry="17" fill="{PINK}" stroke="none" transform="rotate(-9 -17 -52)"/>'
-        f'<ellipse cx="17" cy="-54" rx="10.5" ry="28" fill="{WHITE}" transform="rotate(9 17 -54)"/>'
-        f'<ellipse cx="17" cy="-52" rx="4.5" ry="17" fill="{PINK}" stroke="none" transform="rotate(9 17 -52)"/>'
+        f'<path d="M-18,-30 C-34,-46 -58,-36 -60,-14 C-62,6 -54,24 -42,24 C-32,24 -30,8 -30,-4 Z" fill="{WHITE}"/>'
+        f'<path d="M18,-30 C34,-46 58,-36 60,-14 C62,6 54,24 42,24 C32,24 30,8 30,-4 Z" fill="{PATCH}"/>'
         f'</g>'
+        f'<path d="M-30,-26 C-40,-34 -52,-26 -52,-12 C-52,2 -47,14 -42,14 C-37,14 -36,4 -36,-4 Z" fill="{PINK}"/>'
+        f'<path d="M30,-26 C40,-34 52,-26 52,-12 C52,2 47,14 42,14 C37,14 36,4 36,-4 Z" fill="{PINK}"/>'
     )
-    head = f'<ellipse cx="0" cy="0" rx="37" ry="31" fill="{WHITE}" stroke="{INK}" stroke-width="{sw}"/>'
-    if eyes == "code":
+    head = (
+        f'<ellipse cx="0" cy="0" rx="40" ry="34" fill="{WHITE}"/>'
+        # manchas (recortadas a la cabeza): gris en la frente, negra sobre el ojo derecho
+        f'<g clip-path="url(#hd)">'
+        f'<path d="M-20,-36 C-6,-46 16,-44 26,-30 C18,-20 -2,-16 -18,-22 Z" fill="{MERLE}"/>'
+        f'<circle cx="-6" cy="-30" r="2.5" fill="{PATCH}"/><circle cx="8" cy="-34" r="2" fill="{PATCH}"/>'
+        f'<circle cx="16" cy="-26" r="2.2" fill="{PATCH}"/>'
+        f'<path d="M6,-18 C22,-28 42,-14 40,6 C36,18 18,20 8,8 Z" fill="{PATCH}"/>'
+        f'<circle cx="-30" cy="-6" r="3" fill="{MERLE}"/>'
+        f'</g>'
+        f'<ellipse cx="0" cy="0" rx="40" ry="34" fill="none" stroke="{INK}" stroke-width="{sw}"/>'
+    )
+    if eyes == "open":
         face = (
-            f'<g stroke="{INK}" stroke-width="3">'
-            f'<rect x="-31" y="-11" width="26" height="20" rx="5" fill="#1f2530"/>'
-            f'<rect x="5" y="-11" width="26" height="20" rx="5" fill="#1f2530"/>'
-            f'<path d="M-5,-2 h10 M-31,-4 l-6,-3 M31,-4 l6,-3" fill="none" stroke-linecap="round"/>'
+            # ojos: celeste (izquierda) y marrón (derecha)
+            f'<ellipse cx="-16" cy="-3" rx="8" ry="8.5" fill="{WHITE}" stroke="{INK}" stroke-width="2"/>'
+            f'<circle cx="-15" cy="-2" r="5.5" fill="{EYE_BLUE}"/><circle cx="-15" cy="-2" r="2.8" fill="{INK}"/>'
+            f'<circle cx="-17" cy="-4.5" r="1.6" fill="{WHITE}"/>'
+            f'<ellipse cx="16" cy="-3" rx="8" ry="8.5" fill="{WHITE}" stroke="{INK}" stroke-width="2"/>'
+            f'<circle cx="17" cy="-2" r="5.5" fill="{EYE_BROWN}"/><circle cx="17" cy="-2" r="2.8" fill="{INK}"/>'
+            f'<circle cx="15" cy="-4.5" r="1.6" fill="{WHITE}"/>'
+            # gafas con cristal transparente
+            f'<g stroke="{INK}" stroke-width="3" fill="#9fd3ff" fill-opacity=".14">'
+            f'<rect x="-30" y="-15" width="27" height="23" rx="6"/>'
+            f'<rect x="3" y="-15" width="27" height="23" rx="6"/>'
+            f'<path d="M-3,-5 h6 M-30,-7 l-7,-3 M30,-7 l7,-3" fill="none" stroke-linecap="round"/>'
             f'</g>'
-            f'<text x="-18" y="4.5" font-family="{MONO}" font-size="15" font-weight="700" '
-            f'fill="{GREEN}" text-anchor="middle">&gt;</text>'
-            f'<text x="18" y="4.5" font-family="{MONO}" font-size="15" font-weight="700" '
-            f'fill="{GREEN}" text-anchor="middle">&lt;</text>'
         )
-    else:  # ojos cerrados (durmiendo)
+    else:  # dormida
         face = (
-            f'<path d="M-25,-1 q7,6 14,0 M11,-1 q7,6 14,0" fill="none" stroke="{INK}" '
+            f'<path d="M-24,-2 q8,7 16,0 M8,-2 q8,7 16,0" fill="none" stroke="{INK}" '
             f'stroke-width="3" stroke-linecap="round"/>'
         )
-    mouth = (
-        f'<ellipse cx="-31" cy="12" rx="5" ry="3" fill="{BLUSH}" opacity=".85"/>'
-        f'<ellipse cx="31" cy="12" rx="5" ry="3" fill="{BLUSH}" opacity=".85"/>'
-        f'<path d="M-4,17 q4,4 8,0" fill="none" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>'
+    muzzle = (
+        f'<ellipse cx="0" cy="18" rx="21" ry="15" fill="#f3f4f6" stroke="#cfd6de" stroke-width="2"/>'
+        f'<ellipse cx="-33" cy="8" rx="5" ry="3" fill="{BLUSH}" opacity=".8"/>'
+        f'<ellipse cx="33" cy="8" rx="5" ry="3" fill="{BLUSH}" opacity=".8"/>'
+        # nariz rosada con motitas
+        f'<path d="M-10,10 h20 a5,5 0 0 1 4,7 l-11,9 a4,4 0 0 1 -6,0 l-11,-9 a5,5 0 0 1 4,-7 Z" '
+        f'fill="{NOSE}" stroke="{INK}" stroke-width="2.5" stroke-linejoin="round"/>'
+        f'<circle cx="-4" cy="14" r="1.3" fill="{PATCH}"/><circle cx="5" cy="13" r="1.1" fill="{PATCH}"/>'
+        f'<path d="M0,26 v3 M-7,30 q7,6 14,0" fill="none" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>'
     )
-    return f'<g transform="rotate({tilt})">{ears}{head}{face}{mouth}</g>'
+    return f'<g transform="rotate({tilt})">{ears}{head}{face}{muzzle}</g>'
 
 
 def mascot_body() -> str:
-    return (f'<path d="M-30,18 C-36,40 -32,66 0,66 C32,66 36,40 30,18 Z" '
-            f'fill="{WHITE}" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>')
+    return (
+        f'<path d="M-30,18 C-36,40 -32,66 0,66 C32,66 36,40 30,18 Z" '
+        f'fill="{WHITE}" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>'
+        # manchas del lomo
+        f'<g clip-path="url(#bd)"><path d="M18,40 C28,36 36,46 30,56 C24,62 14,56 16,48 Z" fill="{PATCH}"/>'
+        f'<circle cx="-22" cy="52" r="4" fill="{MERLE}"/></g>'
+        # arnés
+        f'<path d="M-31,30 C-14,42 14,42 31,30" fill="none" stroke="{INK}" stroke-width="12" stroke-linecap="round"/>'
+        f'<path d="M-31,30 C-14,42 14,42 31,30" fill="none" stroke="{HARNESS}" stroke-width="7" stroke-linecap="round"/>'
+        f'<path d="M-31,30 C-14,42 14,42 31,30" fill="none" stroke="#c9d1d9" stroke-width="1.5" stroke-dasharray="4 4"/>'
+        f'<rect x="-6" y="32" width="12" height="9" rx="2" fill="#444c56" stroke="{INK}" stroke-width="2"/>'
+    )
 
 
 def mug(x: float, y: float, s: float = 1.0, steam: bool = True) -> str:
@@ -328,7 +365,10 @@ STYLE = f"""<style>
 def svg(w: int, h: int, body: str, title: str) -> str:
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
             f'viewBox="0 0 {w} {h}" role="img" aria-label="{escape(title)}">'
-            f'<title>{escape(title)}</title>{STYLE}{body}</svg>')
+            f'<title>{escape(title)}</title>{STYLE}'
+            f'<defs><clipPath id="hd"><ellipse cx="0" cy="0" rx="40" ry="34"/></clipPath>'
+            f'<clipPath id="bd"><path d="M-30,18 C-36,40 -32,66 0,66 C32,66 36,40 30,18 Z"/></clipPath></defs>'
+            f'{body}</svg>')
 
 
 def fmt(n: int) -> str:
