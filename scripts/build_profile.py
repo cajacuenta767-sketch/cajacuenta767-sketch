@@ -9,6 +9,9 @@ Lee `profile.json`, consulta la API de GitHub (REST + GraphQL) y escribe:
   assets/pins/<repo>.svg     tarjetas de repositorios destacados
   assets/contributions.svg   calendario de contribuciones del último año
   assets/avatar.svg          mascota sola (para usar como foto de perfil)
+  assets/skills.svg          lenguajes, frameworks y herramientas del CV
+  assets/experience.svg      experiencia profesional
+  assets/education.svg       formación y logros
 
 Si la API no responde (sin red, sin token, límite de peticiones) usa los
 datos guardados en `scripts/cache.json`, así el perfil nunca se queda vacío.
@@ -541,6 +544,132 @@ def render_avatar() -> str:
     return svg(W, W, body, "Avatar")
 
 
+
+# ------------------------------------------------- tarjetas del CV ---
+def chip(x: float, y: float, label: str, color: str) -> tuple[str, float]:
+    """Píldora con punto de color y etiqueta. Devuelve (svg, ancho)."""
+    w = 26 + len(label) * 7.2 + 14
+    return (
+        f'<rect x="{x:.0f}" y="{y:.0f}" width="{w:.0f}" height="30" rx="15" fill="#21262d" stroke="{BORDER}" stroke-width="1.5"/>'
+        f'<circle cx="{x + 15:.0f}" cy="{y + 15:.0f}" r="5" fill="{color}"/>'
+        f'<text x="{x + 26:.0f}" y="{y + 19.5:.0f}" font-family="{FONT}" font-size="13" fill="{TEXT}">{escape(label)}</text>',
+        w,
+    )
+
+
+def card_title(text: str, y: float = 40) -> str:
+    return (f'<text x="28" y="{y}" font-family="{FONT}" font-size="18" font-weight="700" '
+            f'fill="{TEXT}">{escape(text)}</text>')
+
+
+def trophy(x: float, y: float, s: float = 1.0) -> str:
+    return (
+        f'<g transform="translate({x} {y}) scale({s})" fill="#f2cc60" stroke="{INK}" stroke-width="1.5" stroke-linejoin="round">'
+        f'<path d="M-7,-9 h14 v6 a7,7 0 0 1 -14,0 Z"/>'
+        f'<path d="M-7,-7 h-4 a4,4 0 0 0 4,6 M7,-7 h4 a4,4 0 0 1 -4,6" fill="none"/>'
+        f'<path d="M-2,3 h4 v4 h-4 Z"/><path d="M-6,7 h12 v3 h-12 Z"/>'
+        f'</g>'
+    )
+
+
+def mortarboard(x: float, y: float, s: float = 1.0) -> str:
+    return (
+        f'<g transform="translate({x} {y}) scale({s})">'
+        f'<path d="M-14,4 v8 q14,9 28,0 v-8" fill="#30363d" stroke="{TEXT}" stroke-width="1.5"/>'
+        f'<path d="M0,-10 L24,0 L0,10 L-24,0 Z" fill="#484f58" stroke="{TEXT}" stroke-width="1.5" stroke-linejoin="round"/>'
+        f'<path d="M24,0 v12" stroke="#f2cc60" stroke-width="2" stroke-linecap="round"/>'
+        f'<circle cx="24" cy="13" r="2.5" fill="#f2cc60"/>'
+        f'</g>'
+    )
+
+
+def render_skills(cfg: dict) -> str:
+    W = 900
+    right_limit = 700           # espacio reservado a la derecha para la mascota
+    y = 74
+    body = [card_title("Lenguajes, frameworks y herramientas")]
+    for group in cfg.get("skills", []):
+        body.append(f'<text x="28" y="{y}" font-family="{FONT}" font-size="12" font-weight="700" '
+                    f'fill="{MUTED}" letter-spacing="1">{escape(group["category"].upper())}</text>')
+        y += 12
+        x = 28
+        for label, color in group["items"]:
+            _, w = chip(0, 0, label, color)
+            if x + w > right_limit:
+                x = 28
+                y += 38
+            svg_chip, w = chip(x, y, label, color)
+            body.append(svg_chip)
+            x += w + 8
+        y += 30 + 26
+    H = y + 4
+    body.insert(0, f'<rect x="1.5" y="1.5" width="{W - 3}" height="{H - 3}" rx="14" fill="{CARD}" stroke="{BORDER}" stroke-width="3"/>')
+    body.append(mascot_laptop(800, H - 60, .8))
+    body.append(sparkle(740, 70, 7, GREEN_SOFT, .2) + plus(870, 60, 6, GREEN, .8) + sparkle(866, 120, 5, GREEN_SOFT, 1.1))
+    return svg(W, H, "".join(body), "Stack tecnológico")
+
+
+def render_experience(cfg: dict) -> str:
+    W = 900
+    text_right = 690
+    y = 46
+    entries = []
+    for job in cfg.get("experience", []):
+        lines = wrap(job["summary"], int((text_right - 64) / 7.3), 3)
+        entries.append((job, lines, y))
+        y += 24 + 20 + 20 * len(lines) + 22
+    H = y - 6
+    body = [
+        f'<rect x="1.5" y="1.5" width="{W - 3}" height="{H - 3}" rx="14" fill="{CARD}" stroke="{BORDER}" stroke-width="3"/>',
+    ]
+    if entries:
+        body.append(f'<line x1="40" y1="{entries[0][2] - 6}" x2="40" y2="{entries[-1][2] + 6}" stroke="{BORDER}" stroke-width="3"/>')
+    for job, lines, ey in entries:
+        body.append(f'<circle cx="40" cy="{ey - 6}" r="7" fill="{GREEN}" stroke="{CARD}" stroke-width="3"/>')
+        body.append(f'<text x="64" y="{ey}" font-family="{FONT}" font-size="16" font-weight="700" fill="{TEXT}">{escape(job["role"])}</text>')
+        body.append(f'<text x="64" y="{ey + 21}" font-family="{FONT}" font-size="13.5" fill="{LINK}">{escape(job["company"])}'
+                    f'<tspan fill="{MUTED}"> · {escape(job["period"])}</tspan></text>')
+        ty = ey + 44
+        for line in lines:
+            body.append(f'<text x="64" y="{ty}" font-family="{FONT}" font-size="14" fill="{TEXT}">{escape(line)}</text>')
+            ty += 20
+    body.append(mascot_typing(800, H - 120, .6))
+    body.append(sparkle(732, 40, 7, GREEN_SOFT, .4) + plus(872, 48, 6, GREEN, 1.0))
+    return svg(W, H, "".join(body), "Experiencia profesional")
+
+
+def render_education(cfg: dict) -> str:
+    W = 900
+    edu = cfg.get("education", {})
+    honors = cfg.get("honors", [])
+    body = []
+    # columna izquierda: formación
+    body.append(mortarboard(48, 50, 1.0))
+    body.append(f'<text x="86" y="48" font-family="{FONT}" font-size="16" font-weight="700" fill="{TEXT}">{escape(edu.get("school", ""))}</text>')
+    body.append(f'<text x="86" y="69" font-family="{FONT}" font-size="13.5" fill="{LINK}">{escape(edu.get("degree", ""))}'
+                f'<tspan fill="{MUTED}"> · {escape(edu.get("date", ""))}</tspan></text>')
+    ty = 96
+    body.append(f'<text x="86" y="{ty}" font-family="{FONT}" font-size="13" font-weight="700" fill="{MUTED}">TESIS</text>')
+    ty += 20
+    for line in wrap(edu.get("thesis", ""), 52, 4):
+        body.append(f'<text x="86" y="{ty}" font-family="{FONT}" font-size="13.5" fill="{TEXT}" font-style="italic">{escape(line)}</text>')
+        ty += 19
+    left_h = ty
+    # columna derecha: logros
+    hx, hy = 500, 48
+    body.append(f'<text x="{hx}" y="{hy - 2}" font-family="{FONT}" font-size="13" font-weight="700" fill="{MUTED}">LOGROS</text>')
+    hy += 22
+    for h in honors:
+        lines = wrap(h, 46, 2)
+        body.append(trophy(hx + 8, hy - 5, .95))
+        for i, line in enumerate(lines):
+            body.append(f'<text x="{hx + 26}" y="{hy + i * 18}" font-family="{FONT}" font-size="13.5" fill="{TEXT}">{escape(line)}</text>')
+        hy += 18 * len(lines) + 12
+    H = max(left_h, hy) + 14
+    body.insert(0, f'<rect x="1.5" y="1.5" width="{W - 3}" height="{H - 3}" rx="14" fill="{CARD}" stroke="{BORDER}" stroke-width="3"/>')
+    body.append(sparkle(470, 26, 6, "#f2cc60", .3) + sparkle(878, 26, 6, GREEN_SOFT, .9) + plus(866, 70, 5, GREEN, .5))
+    return svg(W, H, "".join(body), "Formación y logros")
+
 # ------------------------------------------------------------------ API ---
 def token() -> str | None:
     return os.environ.get("PROFILE_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -627,6 +756,9 @@ def main() -> int:
         os.path.join(ASSETS, "stats.svg"): render_stats(data["user"]),
         os.path.join(ASSETS, "contributions.svg"): render_contributions(data.get("calendar")),
         os.path.join(ASSETS, "avatar.svg"): render_avatar(),
+        os.path.join(ASSETS, "skills.svg"): render_skills(cfg),
+        os.path.join(ASSETS, "experience.svg"): render_experience(cfg),
+        os.path.join(ASSETS, "education.svg"): render_education(cfg),
     }
     for pin in cfg["pinned"]:
         slug = re.sub(r"[^a-z0-9]+", "-", pin["repo"].lower()).strip("-")

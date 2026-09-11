@@ -1,27 +1,32 @@
 {
   "username": "cajacuenta767-sketch",
   "display_name": "Hide777",
-  "tagline": "Full stack developer | coffee addict ☕",
-  "code_snippet": ["for (;;) {", "  code();", "  coffee();", "}"],
+  "tagline": "Full stack developer · Software architect | coffee addict ☕",
+  "code_snippet": [
+    "for (;;) {",
+    "  code();",
+    "  coffee();",
+    "}"
+  ],
   "pinned": [
     {
       "repo": "Avendia-3.0",
-      "description": "Plataforma educativa para aprender, enseñar y crecer.",
+      "description": "Plataforma educativa: MVP para sectores educativos y corporativos.",
       "decoration": "peek"
     },
     {
       "repo": "Supero-Pos",
-      "description": "Punto de venta moderno y rápido para tu negocio.",
+      "description": "Punto de venta con paneles analíticos en tiempo real.",
       "decoration": "mug"
     },
     {
       "repo": "Vendly",
-      "description": "Gestiona ventas e inventario sin complicarte.",
+      "description": "Gestión de ventas e inventario sin complicarte.",
       "decoration": "none"
     },
     {
       "repo": "Tienda-Online-",
-      "description": "Tienda online lista para vender desde el día uno.",
+      "description": "E-commerce con carrito, suscripciones y pagos en tiempo real.",
       "decoration": "note"
     },
     {
@@ -35,5 +40,182 @@
       "decoration": "sleep"
     }
   ],
-  "language_overrides": {}
+  "language_overrides": {},
+  "full_name": "Bryan Salirrosas",
+  "location": "La Paz, Bolivia",
+  "links": {
+    "portfolio": "https://hide-dev.vercel.app/proyectos",
+    "email": "salirrosasbryan18@gmail.com"
+  },
+  "about": [
+    "Founder & Lead Software Architect en Sky tech. Diseño ERPs, MVPs y pipelines de datos para empresas y educación.",
+    "Ingeniero de Sistemas por la UMSA. Me interesan las arquitecturas de microservicios, el cloud, la ciberseguridad y la automatización empresarial.",
+    "Español nativo · Inglés técnico."
+  ],
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": [
+        [
+          "JavaScript (ES6+)",
+          "#f1e05a"
+        ],
+        [
+          "TypeScript",
+          "#3178c6"
+        ],
+        [
+          "React",
+          "#61dafb"
+        ],
+        [
+          "Next.js",
+          "#ffffff"
+        ],
+        [
+          "React Native",
+          "#61dafb"
+        ],
+        [
+          "Tailwind CSS",
+          "#38bdf8"
+        ],
+        [
+          "HTML5",
+          "#e34c26"
+        ],
+        [
+          "CSS3 / SCSS",
+          "#c6538c"
+        ],
+        [
+          "Vite",
+          "#a855f7"
+        ],
+        [
+          "Framer Motion",
+          "#e91e63"
+        ]
+      ]
+    },
+    {
+      "category": "Backend y datos",
+      "items": [
+        [
+          "Node.js (Express)",
+          "#3c873a"
+        ],
+        [
+          "Python (FastAPI / Django)",
+          "#3572A5"
+        ],
+        [
+          "PHP",
+          "#777bb4"
+        ],
+        [
+          "Laravel",
+          "#ff2d20"
+        ],
+        [
+          "PostgreSQL",
+          "#336791"
+        ],
+        [
+          "MongoDB",
+          "#47a248"
+        ],
+        [
+          "MySQL",
+          "#e48e00"
+        ],
+        [
+          "Firebase",
+          "#ffca28"
+        ]
+      ]
+    },
+    {
+      "category": "Móvil",
+      "items": [
+        [
+          "Flutter",
+          "#54c5f8"
+        ],
+        [
+          "Dart",
+          "#00B4AB"
+        ],
+        [
+          "Swift",
+          "#f05138"
+        ],
+        [
+          "Kotlin",
+          "#a97bff"
+        ]
+      ]
+    },
+    {
+      "category": "DevOps y herramientas",
+      "items": [
+        [
+          "Git / GitHub",
+          "#f05032"
+        ],
+        [
+          "Docker",
+          "#2496ed"
+        ],
+        [
+          "AWS (S3 / EC2)",
+          "#ff9900"
+        ],
+        [
+          "Linux / Bash",
+          "#89e051"
+        ],
+        [
+          "Zabbix",
+          "#d40000"
+        ],
+        [
+          "Figma (UI/UX)",
+          "#f24e1e"
+        ]
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Founder & Lead Software Architect",
+      "company": "Sky tech",
+      "period": "Ene 2024 – Presente",
+      "summary": "Dirijo el ciclo completo de desarrollo: ERPs (SCIGE e inmobiliario), MVPs como Avendia y Avend Escala, pipelines de datos, bots de Telegram y monitoreo con Zabbix."
+    },
+    {
+      "role": "Full-Stack Developer",
+      "company": "Poiesis Consulting S.R.L.",
+      "period": "Ene 2023 – Dic 2023",
+      "summary": "Arquitecturas escalables con React.js y Node.js, interfaces UX/UI responsivas, sistemas POS y paneles analíticos en tiempo real sobre bases SQL y NoSQL."
+    },
+    {
+      "role": "Pasante de Desarrollo de Software",
+      "company": "BTSOFT",
+      "period": "Ene 2021 – Dic 2022",
+      "summary": "Mantenimiento y optimización de sistemas internos, nuevas funcionalidades web con metodologías ágiles, pruebas de validación y documentación."
+    }
+  ],
+  "education": {
+    "school": "Universidad Mayor de San Andrés (UMSA)",
+    "degree": "Grado en Ingeniería de Sistemas",
+    "date": "Diciembre 2025",
+    "thesis": "Arquitectura de microservicios basada en eventos para la escalabilidad masiva y optimización de sistemas distribuidos de alta disponibilidad."
+  },
+  "honors": [
+    "1.er lugar en el Hackathon UMSA 2024 (Certamen de Innovación Tecnológica)",
+    "Top 5 % de la Facultad de Ingeniería · Reconocimiento al Mérito Académico",
+    "Beca por Excelencia Académica del Consejo Universitario (2023 – 2025)",
+    "Mención honorífica por investigación en optimización de algoritmos"
+  ]
 }

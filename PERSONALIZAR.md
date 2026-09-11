@@ -4,7 +4,7 @@ Todo lo visual sale de dos sitios:
 
 | Archivo | Qué controla |
 |---|---|
-| `profile.json` | usuario, nombre, tagline, snippet de código del banner, repos destacados (nombre, descripción, decoración) |
+| `profile.json` | usuario, nombre, tagline, snippet de código del banner, repos destacados (nombre, descripción, decoración), stack (`skills`), experiencia (`experience`), formación (`education`), logros (`honors`) |
 | `README.md` | el orden de las secciones, los badges de tecnologías y los enlaces |
 
 Los SVG de `assets/` **no se editan a mano**: los genera `scripts/build_profile.py`.
@@ -39,6 +39,18 @@ Si un repo no tiene lenguaje detectado por GitHub, puedes forzarlo:
 ```json
 "language_overrides": { "Farmasys-": "TypeScript" }
 ```
+
+## Stack, experiencia y formación (datos del CV)
+
+- `skills`: lista de categorías; cada una tiene `category` y `items` como
+  pares `["Nombre", "#color"]`. Las píldoras se reparten solas en filas.
+- `experience`: lista de puestos con `role`, `company`, `period` y `summary`
+  (el resumen se corta a 3 líneas).
+- `education`: `school`, `degree`, `date` y `thesis`.
+- `honors`: lista de textos cortos (máximo 2 líneas cada uno).
+
+La cabecera (nombre, ubicación, portafolio, email) y el párrafo "sobre mí"
+están escritos directamente en `README.md`.
 
 ## Regenerar los SVG en tu máquina
 

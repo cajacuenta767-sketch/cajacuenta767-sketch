@@ -11,10 +11,16 @@
 </div>
 
 <div align="center">
-  <h1>Hide777</h1>
+  <h1>Bryan Salirrosas</h1>
   <p>
-    <b>@cajacuenta767-sketch</b><br/>
-    Full stack developer&nbsp;|&nbsp;coffee addict ☕
+    <b>Hide777</b> · <b>@cajacuenta767-sketch</b><br/>
+    Full stack developer · Software architect&nbsp;|&nbsp;coffee addict ☕
+  </p>
+  <p>
+    📍 La Paz, Bolivia
+    &nbsp;·&nbsp; 🎓 Ingeniería de Sistemas, UMSA
+    &nbsp;·&nbsp; <a href="https://hide-dev.vercel.app/proyectos">🌐 Portafolio</a>
+    &nbsp;·&nbsp; <a href="mailto:salirrosasbryan18@gmail.com">✉️ Email</a>
   </p>
   <a href="https://github.com/cajacuenta767-sketch?tab=followers">
     <img src="assets/stats.svg" alt="followers · following · repositorios" width="100%"/>
@@ -31,13 +37,17 @@
   <a href="https://github.com/cajacuenta767-sketch?tab=stars">Stars</a>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/TypeScript-161b22?style=flat-square&logo=typescript&logoColor=3178c6" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/JavaScript-161b22?style=flat-square&logo=javascript&logoColor=f1e05a" alt="JavaScript"/>
-  <img src="https://img.shields.io/badge/Dart-161b22?style=flat-square&logo=dart&logoColor=00B4AB" alt="Dart"/>
-  <img src="https://img.shields.io/badge/Flutter-161b22?style=flat-square&logo=flutter&logoColor=54C5F8" alt="Flutter"/>
-  <img src="https://img.shields.io/badge/Git-161b22?style=flat-square&logo=git&logoColor=F05032" alt="Git"/>
+<p>
+  Founder &amp; Lead Software Architect en <b>Sky tech</b>: diseño ERPs, MVPs y pipelines de datos para empresas y educación.
+  Me interesan las arquitecturas de microservicios, el cloud, la ciberseguridad y la automatización empresarial.
+  Español nativo · Inglés técnico.
 </p>
+
+<h3>🧰 Stack</h3>
+
+<div align="center">
+  <img src="assets/skills.svg" alt="Lenguajes, frameworks y herramientas" width="100%"/>
+</div>
 
 <h3>📌 Repositorios destacados &nbsp;<sub><a href="https://github.com/cajacuenta767-sketch?tab=repositories">Ver todos</a></sub></h3>
 
@@ -49,6 +59,18 @@
   <a href="https://github.com/cajacuenta767-sketch/rafael.net"><img src="assets/pins/rafael-net.svg" alt="rafael.net"/></a>
   <a href="https://github.com/cajacuenta767-sketch/Farmasys-"><img src="assets/pins/farmasys.svg" alt="Farmasys-"/></a>
 </p>
+
+<h3>💼 Experiencia</h3>
+
+<div align="center">
+  <img src="assets/experience.svg" alt="Experiencia profesional" width="100%"/>
+</div>
+
+<h3>🎓 Formación y logros</h3>
+
+<div align="center">
+  <img src="assets/education.svg" alt="Formación y logros" width="100%"/>
+</div>
 
 <h3>🌱 Contribuciones</h3>
 
