@@ -1,0 +1,13 @@
+{
+  "fetched_at": "2026-09-11T16:00:00Z",
+  "user": {"followers": 0, "following": 0, "public_repos": 9},
+  "repos": {
+    "Avendia-3.0":   {"stars": 0, "forks": 0, "language": "TypeScript"},
+    "Supero-Pos":    {"stars": 0, "forks": 0, "language": "TypeScript"},
+    "Vendly":        {"stars": 0, "forks": 0, "language": "TypeScript"},
+    "Tienda-Online-":{"stars": 0, "forks": 0, "language": "JavaScript"},
+    "rafael.net":    {"stars": 0, "forks": 0, "language": "Dart"},
+    "Farmasys-":     {"stars": 0, "forks": 0, "language": null}
+  },
+  "calendar": null
+}

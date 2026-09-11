@@ -1,0 +1,39 @@
+{
+  "username": "cajacuenta767-sketch",
+  "display_name": "Hide777",
+  "tagline": "Full stack developer | coffee addict ☕",
+  "code_snippet": ["for (;;) {", "  code();", "  coffee();", "}"],
+  "pinned": [
+    {
+      "repo": "Avendia-3.0",
+      "description": "Plataforma educativa para aprender, enseñar y crecer.",
+      "decoration": "peek"
+    },
+    {
+      "repo": "Supero-Pos",
+      "description": "Punto de venta moderno y rápido para tu negocio.",
+      "decoration": "mug"
+    },
+    {
+      "repo": "Vendly",
+      "description": "Gestiona ventas e inventario sin complicarte.",
+      "decoration": "none"
+    },
+    {
+      "repo": "Tienda-Online-",
+      "description": "Tienda online lista para vender desde el día uno.",
+      "decoration": "note"
+    },
+    {
+      "repo": "rafael.net",
+      "description": "App multiplataforma hecha con Flutter y mucho café.",
+      "decoration": "laptop"
+    },
+    {
+      "repo": "Farmasys-",
+      "description": "Gestión para farmacias: stock, ventas y recetas.",
+      "decoration": "sleep"
+    }
+  ],
+  "language_overrides": {}
+}
