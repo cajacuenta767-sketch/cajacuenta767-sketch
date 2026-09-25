@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-24T08:30:59+00:00",
+ "fetched_at": "2026-09-25T08:52:50+00:00",
  "user": {
   "followers": 0,
   "following": 0,
@@ -38,7 +38,7 @@
   }
  },
  "calendar": {
-  "total": 70,
+  "total": 72,
   "weeks": [
    [
     {
@@ -1987,6 +1987,11 @@
     },
     {
      "date": "2026-09-24",
+     "count": 2,
+     "level": 1
+    },
+    {
+     "date": "2026-09-25",
      "count": 0,
      "level": 0
     }
